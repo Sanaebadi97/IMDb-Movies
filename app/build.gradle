@@ -32,4 +32,28 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //ViewModel and LiveData
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+
+    implementation "com.google.android.material:material:$material_version"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rx_adapter_version"
+
+    // Gson
+    implementation "com.google.code.gson:gson:$gson_version"
+
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+
+    // Paging
+    implementation "androidx.paging:paging-runtime:$paging_version"
+
+    //Rx
+    implementation "io.reactivex.rxjava2:rxjava:$rx_java_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rx_android_version"
+
 }
