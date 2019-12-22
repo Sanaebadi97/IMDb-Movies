@@ -16,7 +16,7 @@
         <argument
             android:name="id"
             app:argType="integer"
-            android:defaultValue="0" />
+            android:defaultValue="1" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"

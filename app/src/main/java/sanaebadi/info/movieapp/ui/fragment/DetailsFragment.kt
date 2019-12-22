@@ -47,7 +47,7 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val movieId: Int = 1
+        val movieId: Int = id!!
         val apiService: MovieApiInterface = MovieClient.getClient()
         repository = MovieDetailsRepository(apiService)
 
