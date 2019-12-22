@@ -3,7 +3,7 @@ package sanaebadi.info.movieapp.api
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
-import sanaebadi.info.movieapp.model.MovieDetais
+import sanaebadi.info.movieapp.model.MovieDetails
 
 
 /**
@@ -16,6 +16,6 @@ interface MovieApiInterface {
 
     //details
     @GET("movie/{movie_id}")
-    fun getMovieDetails(@Path("movie_id") movieId: Int): Single<MovieDetais>
+    fun getMovieDetails(@Path("movie_id") movieId: Int): Single<MovieDetails>
 
 }

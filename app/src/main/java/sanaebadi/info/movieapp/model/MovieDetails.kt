@@ -3,7 +3,7 @@ package sanaebadi.info.movieapp.model
 
 import com.google.gson.annotations.SerializedName
 
-data class MovieDetais(
+data class MovieDetails(
     val budget: Int,
     val id: Int,
     val overview: String,
