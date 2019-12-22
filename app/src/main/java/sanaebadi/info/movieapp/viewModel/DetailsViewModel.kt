@@ -21,6 +21,7 @@ class DetailsViewModel(private val movieDetailsRepository: MovieDetailsRepositor
         movieDetailsRepository.getMovieDetailsNetworkState()
     }
 
+
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.dispose()
