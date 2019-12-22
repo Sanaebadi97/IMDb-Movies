@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -30,8 +31,14 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
-        btn.setOnClickListener{
-            navController!!.navigate(R.id.action_homeFragment_to_detailsFragment)
+
+        val bundle = bundleOf(
+            "id" to 299534
+
+        )
+
+        btn.setOnClickListener {
+            navController!!.navigate(R.id.action_homeFragment_to_detailsFragment, bundle)
         }
     }
 }
