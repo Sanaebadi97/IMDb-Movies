@@ -7,7 +7,7 @@ import sanaebadi.info.movieapp.model.MovieDetails
 import sanaebadi.info.movieapp.repository.MovieDetailsRepository
 import sanaebadi.info.movieapp.utilitis.NetworkState
 
-class DetailsViewModel(private val movieDetailsRepository: MovieDetailsRepository, movieId: Int) :
+class DetailsViewModel(private val movieDetailsRepository: MovieDetailsRepository, movieId: Long) :
     ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()

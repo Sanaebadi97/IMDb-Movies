@@ -32,13 +32,13 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
 
+        val bundle = bundleOf(
+            "id" to 181812
 
+        )
 
         btn.setOnClickListener {
-            val bundle = bundleOf(
-                "id" to 299534
 
-            )
             navController!!.navigate(R.id.action_homeFragment_to_detailsFragment, bundle)
         }
     }

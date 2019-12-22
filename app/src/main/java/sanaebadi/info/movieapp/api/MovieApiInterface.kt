@@ -16,6 +16,6 @@ interface MovieApiInterface {
 
     //details
     @GET("movie/{movie_id}")
-    fun getMovieDetails(@Path("movie_id") movieId: Int): Single<MovieDetails>
+    fun getMovieDetails(@Path("movie_id") movieId: Long): Single<MovieDetails>
 
 }

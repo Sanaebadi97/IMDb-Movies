@@ -30,11 +30,11 @@ class DetailsFragment : Fragment() {
     private lateinit var viewModel: DetailsViewModel
     private lateinit var repository: MovieDetailsRepository
 
-    private var id: Int? = null
+    private var id: Long? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        id = arguments!!.getInt("id")
+        id = arguments!!.getLong("id")
     }
 
     override fun onCreateView(
@@ -42,12 +42,8 @@ class DetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_details, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val movieId = 299534
+        val view: View = inflater.inflate(R.layout.fragment_details, container, false)
+        val movieId: Long = 181812
         val apiService: MovieApiInterface = MovieClient.getClient()
         repository = MovieDetailsRepository(apiService)
 
@@ -58,11 +54,13 @@ class DetailsFragment : Fragment() {
         })
 
         viewModel.networkState.observe(viewLifecycleOwner, Observer {
-            progress_bar.visibility = if (it == NetworkState.LOADED) View.VISIBLE else View.GONE
+            progress_bar.visibility = if (it == NetworkState.LOADED) View.GONE else View.VISIBLE
             txt_error.visibility = if (it == NetworkState.ERROR) View.VISIBLE else View.GONE
         })
 
+        return view
     }
+
 
     private fun bindUi(it: MovieDetails) {
         movie_title.text = it.title
@@ -81,7 +79,7 @@ class DetailsFragment : Fragment() {
             .into(iv_movie_poster)
     }
 
-    private fun getViewModel(movieId: Int): DetailsViewModel {
+    private fun getViewModel(movieId: Long): DetailsViewModel {
         return ViewModelProvider(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
