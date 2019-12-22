@@ -16,7 +16,7 @@ import sanaebadi.info.movieapp.R
 /**
  * A simple [Fragment] subclass.
  */
-class HomeFragment : Fragment() {
+class PopularFragment : Fragment() {
 
     private var navController: NavController? = null
 

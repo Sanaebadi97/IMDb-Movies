@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="sanaebadi.info.movieapp.ui.fragment.HomeFragment"
+        android:name="sanaebadi.info.movieapp.ui.fragment.PopularFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
