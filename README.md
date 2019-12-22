@@ -8,3 +8,7 @@ Using:
 - RxJava
 - Retrofit
 - themoviedb.org REST API
+
+
+https://www.themoviedb.org/
+https://www.themoviedb.org/documentation/api
