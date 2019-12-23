@@ -30,11 +30,9 @@ class DetailsFragment : Fragment() {
     private lateinit var viewModel: DetailsViewModel
     private lateinit var repository: MovieDetailsRepository
 
-    private var id: Long? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-     //   id = arguments!!.getLong("id")
 
         val movieId: Long = 181812
         val apiService: MovieApiInterface = MovieClient.getClient()

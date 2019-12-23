@@ -2,6 +2,7 @@ package sanaebadi.info.movieapp.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.OrientationEventListener
 import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
@@ -16,12 +17,8 @@ import sanaebadi.info.movieapp.model.Movie
 import sanaebadi.info.movieapp.utilitis.NetworkState
 
 
-class PopularMoviePagedListAdapter(
-    private val context: Context,
-    var listener: OnItemClickListener
-) :
+class PopularMoviePagedListAdapter(private val context: Context, val listener: onItemClickListener) :
     PagedListAdapter<Movie, RecyclerView.ViewHolder>(MovieDiffCallback()) {
-
 
     val MOVIE_VIEW_TYPE = 1
     val NETWORK_VIEW_TYPE = 2
@@ -49,7 +46,7 @@ class PopularMoviePagedListAdapter(
             (holder as NetworkStateItemViewHolder).bind(networkState)
         }
 
-        holder.itemView.setOnClickListener {
+        holder.itemView.setOnClickListener{
             listener.onItemClick(it)
         }
     }
@@ -95,6 +92,11 @@ class PopularMoviePagedListAdapter(
                 .load(moviePosterURL)
                 .into(itemView.cv_iv_movie_poster)
 
+            itemView.setOnClickListener {
+                //                val intent = Intent(context, SingleMovie::class.java)
+//                intent.putExtra("id", movie?.id)
+//                context.startActivity(intent)
+            }
 
         }
 
@@ -140,9 +142,8 @@ class PopularMoviePagedListAdapter(
 
     }
 
-    interface OnItemClickListener {
-        fun onItemClick(item: View)
+
+    interface onItemClickListener {
+        fun onItemClick(view: View)
     }
-
-
 }

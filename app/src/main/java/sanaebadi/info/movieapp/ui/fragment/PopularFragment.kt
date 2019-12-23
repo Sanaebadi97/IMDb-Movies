@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -28,14 +27,13 @@ import sanaebadi.info.movieapp.viewModel.PopularViewModel
 /**
  * A simple [Fragment] subclass.
  */
-class PopularFragment : Fragment() , PopularMoviePagedListAdapter.OnItemClickListener{
+class PopularFragment : Fragment() , PopularMoviePagedListAdapter.onItemClickListener{
 
     private var navController: NavController? = null
     private lateinit var viewModel: PopularViewModel
     private lateinit var moviePopularRepository: MoviePopularRepository
 
     private lateinit var rvListItem: RecyclerView
-    private var id: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,9 +65,6 @@ class PopularFragment : Fragment() , PopularMoviePagedListAdapter.OnItemClickLis
         }
 
 
-        rvListItem.layoutManager = gridLayoutManager
-        rvListItem.setHasFixedSize(true)
-        rvListItem.adapter = movieAdapter
 
         viewModel.moviePageList.observe(viewLifecycleOwner, Observer {
             movieAdapter.submitList(it)
@@ -87,6 +82,9 @@ class PopularFragment : Fragment() , PopularMoviePagedListAdapter.OnItemClickLis
             }
         })
 
+        rvListItem.layoutManager = gridLayoutManager
+        rvListItem.setHasFixedSize(true)
+        rvListItem.adapter = movieAdapter
 
         return view
     }
@@ -101,7 +99,8 @@ class PopularFragment : Fragment() , PopularMoviePagedListAdapter.OnItemClickLis
         })[PopularViewModel::class.java]
     }
 
-    override fun onItemClick(item: View) {
+    override fun onItemClick(view: View) {
+        navController = Navigation.findNavController(view)
         navController!!.navigate(R.id.action_homeFragment_to_detailsFragment)
     }
 }
