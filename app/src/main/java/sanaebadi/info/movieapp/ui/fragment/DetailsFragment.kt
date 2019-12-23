@@ -34,7 +34,7 @@ class DetailsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        id = arguments!!.getLong("id")
+     //   id = arguments!!.getLong("id")
 
         val movieId: Long = 181812
         val apiService: MovieApiInterface = MovieClient.getClient()

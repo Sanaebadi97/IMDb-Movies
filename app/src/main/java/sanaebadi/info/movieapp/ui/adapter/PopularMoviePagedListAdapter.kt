@@ -16,8 +16,12 @@ import sanaebadi.info.movieapp.model.Movie
 import sanaebadi.info.movieapp.utilitis.NetworkState
 
 
-class PopularMoviePagedListAdapter(private val context: Context) :
+class PopularMoviePagedListAdapter(
+    private val context: Context,
+    var listener: OnItemClickListener
+) :
     PagedListAdapter<Movie, RecyclerView.ViewHolder>(MovieDiffCallback()) {
+
 
     val MOVIE_VIEW_TYPE = 1
     val NETWORK_VIEW_TYPE = 2
@@ -43,6 +47,10 @@ class PopularMoviePagedListAdapter(private val context: Context) :
             (holder as MovieItemViewHolder).bind(getItem(position), context)
         } else {
             (holder as NetworkStateItemViewHolder).bind(networkState)
+        }
+
+        holder.itemView.setOnClickListener {
+            listener.onItemClick(it)
         }
     }
 
@@ -87,11 +95,6 @@ class PopularMoviePagedListAdapter(private val context: Context) :
                 .load(moviePosterURL)
                 .into(itemView.cv_iv_movie_poster)
 
-            itemView.setOnClickListener {
-                //                val intent = Intent(context, SingleMovie::class.java)
-//                intent.putExtra("id", movie?.id)
-//                context.startActivity(intent)
-            }
 
         }
 
@@ -135,6 +138,10 @@ class PopularMoviePagedListAdapter(private val context: Context) :
             notifyItemChanged(itemCount - 1)       //add the network message at the end
         }
 
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(item: View)
     }
 
 
