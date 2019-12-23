@@ -58,9 +58,7 @@ class PopularFragment : Fragment() {
             }
         }
 
-        rvListItem.layoutManager = gridLayoutManager
-        rvListItem.setHasFixedSize(true)
-        rvListItem.adapter = movieAdapter
+
 
         viewModel.moviePageList.observe(viewLifecycleOwner, Observer {
             movieAdapter.submitList(it)
@@ -77,6 +75,10 @@ class PopularFragment : Fragment() {
                 movieAdapter.setNetworkState(it)
             }
         })
+
+        rvListItem.layoutManager = gridLayoutManager
+        rvListItem.setHasFixedSize(true)
+   //     rvListItem.adapter = movieAdapter
 
         return view
     }

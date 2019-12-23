@@ -109,7 +109,7 @@ class PopularAdapter(private val context: Context) :
     }
 
     fun setNetworkState(networkState: NetworkState) {
-        val perviousState = this.networkState
+        val previousState = this.networkState
         val hadExtraRow = hasExtraRow()
         this.networkState = networkState
         val hasExtraRow = hasExtraRow()
@@ -127,7 +127,7 @@ class PopularAdapter(private val context: Context) :
             } else {
                 notifyItemInserted(super.getItemCount())
             }
-        } else if (hasExtraRow && perviousState != networkState) { //hasExtraRow is true and hadExtraRow true
+        } else if (hasExtraRow && previousState != networkState) { //hasExtraRow is true and hadExtraRow true
             notifyItemChanged(itemCount - 1)
         }
     }
