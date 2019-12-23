@@ -35,6 +35,12 @@ class DetailsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         id = arguments!!.getLong("id")
+
+        val movieId: Long = 181812
+        val apiService: MovieApiInterface = MovieClient.getClient()
+        repository = MovieDetailsRepository(apiService)
+
+        viewModel = getViewModel(movieId)
     }
 
     override fun onCreateView(
@@ -43,11 +49,7 @@ class DetailsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_details, container, false)
-        val movieId: Long = 181812
-        val apiService: MovieApiInterface = MovieClient.getClient()
-        repository = MovieDetailsRepository(apiService)
 
-        viewModel = getViewModel(movieId)
         viewModel.movieDetails.observe(viewLifecycleOwner, Observer {
 
             bindUi(it)

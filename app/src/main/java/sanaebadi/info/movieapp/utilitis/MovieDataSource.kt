@@ -12,7 +12,7 @@ import sanaebadi.info.movieapp.model.Movie
 
 class MovieDataSource(
     private val apiService: MovieApiInterface,
-    private val compisiDisposable: CompositeDisposable
+    private val composeDisposable: CompositeDisposable
 ) : PageKeyedDataSource<Int, Movie>() {
 
     private var page = FIRST_PAGE
@@ -25,13 +25,12 @@ class MovieDataSource(
     ) {
 
         networkState.postValue(NetworkState.LOADING)
-        compisiDisposable.add(
+        composeDisposable.add(
             apiService.getPopularMovie(page)
                 .subscribeOn(Schedulers.io())
                 .subscribe(
                     {
-                        callback.onResult(it.movies, null, page + 1)
-
+                        callback.onResult(it.movieList, null, page + 1)
                         networkState.postValue(NetworkState.LOADED)
                     },
                     {
@@ -44,13 +43,13 @@ class MovieDataSource(
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Movie>) {
         networkState.postValue(NetworkState.LOADING)
-        compisiDisposable.add(
+        composeDisposable.add(
             apiService.getPopularMovie(params.key)
                 .subscribeOn(Schedulers.io())
                 .subscribe(
                     {
                         if (it.totalPages >= params.key) {
-                            callback.onResult(it.movies, params.key + 1)
+                            callback.onResult(it.movieList, params.key + 1)
                             networkState.postValue(NetworkState.LOADED)
                         } else {
 

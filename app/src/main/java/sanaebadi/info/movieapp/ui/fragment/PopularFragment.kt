@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
@@ -19,7 +20,7 @@ import sanaebadi.info.movieapp.R
 import sanaebadi.info.movieapp.api.MovieApiInterface
 import sanaebadi.info.movieapp.api.MovieClient
 import sanaebadi.info.movieapp.repository.MoviePopularRepository
-import sanaebadi.info.movieapp.ui.adapter.PopularAdapter
+import sanaebadi.info.movieapp.ui.adapter.PopularMoviePagedListAdapter
 import sanaebadi.info.movieapp.utilitis.NetworkState
 import sanaebadi.info.movieapp.viewModel.PopularViewModel
 
@@ -34,6 +35,14 @@ class PopularFragment : Fragment() {
 
     private lateinit var rvListItem: RecyclerView
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val apiService: MovieApiInterface = MovieClient.getClient()
+        moviePopularRepository = MoviePopularRepository(apiService)
+        viewModel = getViewModel()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,11 +52,8 @@ class PopularFragment : Fragment() {
 
         rvListItem = view.findViewById(R.id.rv_movie_list)
 
-        val apiService: MovieApiInterface = MovieClient.getClient()
-        moviePopularRepository = MoviePopularRepository(apiService)
 
-        viewModel = getViewModel()
-        val movieAdapter = PopularAdapter(activity!!)
+        val movieAdapter = PopularMoviePagedListAdapter(activity!!)
         val gridLayoutManager = GridLayoutManager(activity, 2)
 
         gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
@@ -71,14 +77,14 @@ class PopularFragment : Fragment() {
             txt_error_popular.visibility =
                 if (viewModel.listIsEmpty() && it == NetworkState.ERROR) View.VISIBLE else View.GONE
 
-            if (!viewModel.listIsEmpty()){
+            if (!viewModel.listIsEmpty()) {
                 movieAdapter.setNetworkState(it)
             }
         })
 
         rvListItem.layoutManager = gridLayoutManager
         rvListItem.setHasFixedSize(true)
-   //     rvListItem.adapter = movieAdapter
+        rvListItem.adapter = movieAdapter
 
         return view
     }
@@ -95,12 +101,11 @@ class PopularFragment : Fragment() {
     }
 
     private fun getViewModel(): PopularViewModel {
-        return ViewModelProvider(this, object : ViewModelProvider.Factory {
+        return ViewModelProviders.of(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
                 return PopularViewModel(moviePopularRepository) as T
             }
-
         })[PopularViewModel::class.java]
     }
 }
