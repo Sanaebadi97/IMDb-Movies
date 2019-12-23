@@ -2,56 +2,63 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
-    app:cardCornerRadius="20dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:foreground="?selectableItemBackground"
-    android:layout_marginLeft="4dp"
-    android:layout_marginRight="4dp"
-    android:layout_marginTop="4dp"
-    android:layout_marginBottom="8dp"
+    android:clickable="true"
     android:focusable="true"
-    android:clickable="true">
+    android:foreground="?selectableItemBackground"
+    app:cardCornerRadius="20dp"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true">
 
-    <LinearLayout
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#263238"
+        android:background="@color/bg"
         android:orientation="vertical">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/cv_iv_movie_poster"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="150dp"
             android:scaleType="centerCrop"
-            android:layout_gravity="center"
-            android:src="@drawable/poster_placeholder">
+            android:src="@drawable/poster_placeholder"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        </ImageView>
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/cv_movie_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
             android:layout_marginStart="4dp"
-            android:text="movie"
-            android:textColor="@color/secondaryTextColor"
-            android:textSize="12sp"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
             android:maxLines="1"
-            android:ellipsize="end"/>
+            android:padding="5dp"
+            android:textColor="@color/secondaryTextColor"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cv_iv_movie_poster" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/cv_movie_release_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:textColor="@color/secondaryTextColor"
             android:layout_marginBottom="4dp"
-            android:text="2019"
             android:maxLength="4"
-            android:textSize="12sp"/>
+            android:padding="5dp"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cv_movie_title" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>
