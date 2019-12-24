@@ -75,8 +75,9 @@ class DetailsFragment : Fragment() {
         movie_title.text = it.title
         movie_tagline.text = it.tagline
         movie_release_date.text = it.releaseDate
-        movie_rating.text = it.runtime.toString() + "minutes"
+        movie_rating.text = it.rating.toString()
         movie_overview.text = it.overview
+        movie_runtime.text = it.runtime.toString() + " minutes"
 
         val formatCurrency = NumberFormat.getCurrencyInstance(Locale.US)
         movie_budget.text = formatCurrency.format(it.budget)
