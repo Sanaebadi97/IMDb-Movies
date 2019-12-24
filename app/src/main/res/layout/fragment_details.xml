@@ -37,13 +37,52 @@
                 android:orientation="vertical">
 
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/iv_movie_poster"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="400dp"
-                    android:layout_gravity="center"
-                    android:scaleType="matrix"
-                    android:src="@drawable/poster_placeholder" />
+                    android:layout_height="400dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_movie_poster"
+                        android:layout_width="match_parent"
+                        android:layout_height="400dp"
+                        android:layout_gravity="center"
+                        android:scaleType="matrix"
+                        android:src="@drawable/poster_placeholder" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#99FFFFFF"
+                        android:gravity="center"
+                        android:layout_alignBottom="@id/iv_movie_poster"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/movie_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/text_padding"
+                            android:text="@string/movie"
+                            android:textColor="@color/primaryDarkColor"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/movie_tagline"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/text_padding"
+                            android:text="@string/sub_title"
+                            android:textColor="@color/primaryDarkColor"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -51,25 +90,6 @@
                     android:layout_margin="8dp"
                     android:orientation="vertical">
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/movie_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/movie"
-                        android:padding="@dimen/text_padding"
-                        android:textColor="@color/primaryTextColor"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/movie_tagline"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/sub_title"
-                        android:padding="@dimen/text_padding"
-                        android:textColor="@color/primaryTextColor"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
@@ -89,8 +109,8 @@
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/text_padding"
                             android:layout_marginTop="2dp"
+                            android:padding="@dimen/text_padding"
                             android:text="@string/released_ate"
                             android:textColor="@color/primaryTextColor"
                             android:textSize="@dimen/text_title_size"
@@ -116,8 +136,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
-                            android:text="@string/rating"
                             android:padding="@dimen/text_padding"
+                            android:text="@string/rating"
                             android:textColor="@color/primaryTextColor"
                             android:textSize="@dimen/text_title_size"
                             android:textStyle="bold" />
@@ -126,10 +146,10 @@
                             android:id="@+id/movie_rating"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/text_padding"
                             android:layout_marginTop="2dp"
+                            android:padding="@dimen/text_padding"
                             android:textColor="@color/primaryTextColor"
-                            android:textSize="@dimen/text_details_size"/>
+                            android:textSize="@dimen/text_details_size" />
 
                     </LinearLayout>
 
@@ -168,18 +188,18 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:padding="@dimen/text_padding"
-                            android:textColor="@color/primaryTextColor"
                             android:text="@string/budget"
+                            android:textColor="@color/primaryTextColor"
                             android:textSize="@dimen/text_title_size"
                             android:textStyle="bold" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/movie_budget"
                             android:layout_width="wrap_content"
-                            android:padding="@dimen/text_padding"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/primaryTextColor"
                             android:layout_marginTop="2dp"
+                            android:padding="@dimen/text_padding"
+                            android:textColor="@color/primaryTextColor"
                             android:textSize="@dimen/text_details_size" />
 
                     </LinearLayout>
@@ -215,9 +235,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:textColor="@color/primaryTextColor"
-                        android:text="@string/overview"
                         android:padding="@dimen/text_padding"
+                        android:text="@string/overview"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="@dimen/text_title_size"
                         android:textStyle="bold" />
 
@@ -225,10 +245,10 @@
                         android:id="@+id/movie_overview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/primaryTextColor"
                         android:layout_marginTop="2dp"
                         android:padding="@dimen/text_padding"
                         android:text="@string/overview_o"
+                        android:textColor="@color/primaryTextColor"
                         android:textSize="@dimen/text_details_size" />
 
                 </LinearLayout>
