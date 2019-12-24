@@ -12,6 +12,10 @@ Using:
 - Paging library for Pagination
 - RxJava
 - Retrofit
+- lifecycle
+- navigation
+- gson
+- glide
 - [themoviedb.org](https://www.themoviedb.org/) REST API , [documents](https://www.themoviedb.org/documentation/api)
 
 
