@@ -2,10 +2,12 @@ package sanaebadi.info.movieapp.ui.fragment
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -21,6 +23,7 @@ import sanaebadi.info.movieapp.utilitis.NetworkState
 import sanaebadi.info.movieapp.viewModel.DetailsViewModel
 import java.text.NumberFormat
 import java.util.*
+
 
 /**
  * A simple [Fragment] subclass.
@@ -45,8 +48,14 @@ class DetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
+
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_details, container, false)
+        activity!!.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+
+
 
         viewModel.movieDetails.observe(viewLifecycleOwner, Observer {
 
@@ -87,6 +96,16 @@ class DetailsFragment : Fragment() {
             }
 
         })[DetailsViewModel::class.java]
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as AppCompatActivity?)!!.supportActionBar!!.show()
     }
 
 }

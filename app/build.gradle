@@ -74,8 +74,6 @@ dependencies {
     //koin
     implementation "org.koin:koin-android-viewmodel:$koin_version"
 
-    implementation 'com.github.florent37:shapeofview:1.0.7'
-    implementation 'com.flaviofaria:kenburnsview:1.0.7'
 
 
 
