@@ -1,4 +1,4 @@
-# MoviesApp
+# IMDb-Movies
  Paging Library, RxJava &amp; Retrofit with MVVM / Kotlin
  
  
