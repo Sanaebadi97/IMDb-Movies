@@ -18,6 +18,8 @@ Using:
 - glide
 - [themoviedb.org](https://www.themoviedb.org/) REST API , [documents](https://www.themoviedb.org/documentation/api)
 
+NOTE : I just got the data and information from the **Details** and **Popular** section. Sections such as **Recent and Search**, etc. can also be added to the project. **So help develop with your FORK** .
+
 
 
 
