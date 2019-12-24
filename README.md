@@ -12,8 +12,8 @@ Using:
 - Paging library for Pagination
 - RxJava
 - Retrofit
-- themoviedb.org REST API
+- [themoviedb.org](https://www.themoviedb.org/) REST API , [documents](https://www.themoviedb.org/documentation/api)
 
 
-https://www.themoviedb.org/
-https://www.themoviedb.org/documentation/api
+
+
