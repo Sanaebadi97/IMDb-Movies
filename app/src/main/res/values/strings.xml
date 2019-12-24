@@ -17,4 +17,5 @@
     <string name="sub_title">sub title</string>
     <string name="movie">movie</string>
     <string name="connection_problem">Connection Problem!!</string>
+    <string name="error_message">Error Message</string>
 </resources>

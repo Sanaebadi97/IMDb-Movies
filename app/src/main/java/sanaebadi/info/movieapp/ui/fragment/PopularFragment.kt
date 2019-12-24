@@ -60,7 +60,7 @@ class PopularFragment : Fragment() , PopularMoviePagedListAdapter.onItemClickLis
             override fun getSpanSize(position: Int): Int {
                 val viewType = movieAdapter.getItemViewType(position)
                 if (viewType == movieAdapter.MOVIE_VIEW_TYPE) return 1     //Movie_View_TYPE will occupy 1 out of 3 span
-                else return 3                                             //NETWORK_VIEW_TYPE will occupy all 3 span
+                else return 2                                           //NETWORK_VIEW_TYPE will occupy all 3 span
             }
         }
 

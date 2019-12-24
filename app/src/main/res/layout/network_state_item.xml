@@ -10,11 +10,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Error Message"/>
+        android:textColor="@color/primaryTextColor"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_title_size"
+        android:text="@string/error_message"/>
     <ProgressBar
         android:id="@+id/progress_bar_item"
         style="?android:attr/progressBarStyle"
         android:layout_width="match_parent"
+        android:visibility="visible"
         android:layout_height="wrap_content"
         android:layout_gravity="center"/>
 
