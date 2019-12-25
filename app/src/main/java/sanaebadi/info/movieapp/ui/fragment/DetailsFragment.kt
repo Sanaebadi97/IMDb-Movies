@@ -1,6 +1,7 @@
 package sanaebadi.info.movieapp.ui.fragment
 
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -40,6 +41,8 @@ class DetailsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         movieId = arguments!!.getInt("id")
+
+        println("FIRST MOVIE ID IN DETAILS IS $movieId")
     }
 
     override fun onCreateView(
@@ -61,8 +64,8 @@ class DetailsFragment : Fragment() {
 
         viewModel = getViewModel(movieId!!)
 
-        viewModel.movieDetails.observe(viewLifecycleOwner, Observer {
 
+        viewModel.movieDetails.observe(viewLifecycleOwner, Observer {
             bindUi(it)
 
         })
@@ -78,13 +81,14 @@ class DetailsFragment : Fragment() {
     }
 
 
+    @SuppressLint("SetTextI18n")
     private fun bindUi(it: MovieDetails) {
         movie_title.text = it.title
         movie_tagline.text = it.tagline
         movie_release_date.text = it.releaseDate
         movie_rating.text = it.rating.toString()
         movie_overview.text = it.overview
-        movie_runtime.text = it.runtime.toString() + " minutes"
+        movie_runtime.text = "${it.runtime} minutes"
 
         val formatCurrency = NumberFormat.getCurrencyInstance(Locale.US)
         movie_budget.text = formatCurrency.format(it.budget)

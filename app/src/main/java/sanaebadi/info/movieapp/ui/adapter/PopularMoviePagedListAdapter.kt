@@ -52,8 +52,8 @@ class PopularMoviePagedListAdapter(
         val movie = getItem(position)
         holder.itemView.setOnClickListener {
             listener.onItemClick(it)
-            println("ID IS ${movie!!.id}")
-            getId.getId(movie.id)
+            getId.getId(movie!!.id)
+            println("ID IS ${movie.id}")
 
         }
     }
