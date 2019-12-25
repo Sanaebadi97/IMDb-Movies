@@ -1,6 +1,5 @@
 package sanaebadi.info.movieapp.api
 
-import android.graphics.pdf.PdfDocument
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -19,7 +18,7 @@ interface MovieApiInterface {
 
     //details
     @GET("movie/{movie_id}")
-    fun getMovieDetails(@Path("movie_id") movieId: Long): Single<MovieDetails>
+    fun getMovieDetails(@Path("movie_id") movieId: Int): Single<MovieDetails>
 
     //popular
     @GET("movie/popular")

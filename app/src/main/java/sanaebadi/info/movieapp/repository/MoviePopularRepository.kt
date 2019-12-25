@@ -9,12 +9,14 @@ import sanaebadi.info.movieapp.api.MovieApiInterface
 import sanaebadi.info.movieapp.api.POST_PER_PAGE
 import sanaebadi.info.movieapp.model.Movie
 import sanaebadi.info.movieapp.utilitis.MovieDataSource
+import sanaebadi.info.movieapp.utilitis.MovieDetailsNetworkDataSource
 import sanaebadi.info.movieapp.utilitis.NetworkState
 
 class MoviePopularRepository(private val apiService: MovieApiInterface) {
 
-    lateinit var moviePagedList: LiveData<PagedList<Movie>>
-    lateinit var moviesDataSourceFactory: MovieDataSourceFactory
+    private lateinit var moviePagedList: LiveData<PagedList<Movie>>
+    private lateinit var moviesDataSourceFactory: MovieDataSourceFactory
+    lateinit var movieDetailsNetworkDataSource: MovieDetailsNetworkDataSource
 
     fun fetchLiveMoviePagedList(compositeDisposable: CompositeDisposable): LiveData<PagedList<Movie>> {
         moviesDataSourceFactory = MovieDataSourceFactory(apiService, compositeDisposable)
@@ -28,10 +30,13 @@ class MoviePopularRepository(private val apiService: MovieApiInterface) {
         return moviePagedList
     }
 
+
     fun getNetworkState(): LiveData<NetworkState> {
         return Transformations.switchMap<MovieDataSource, NetworkState>(
             moviesDataSourceFactory.moviesLiveDataSource, MovieDataSource::networkState
         )
     }
+
+
 
 }

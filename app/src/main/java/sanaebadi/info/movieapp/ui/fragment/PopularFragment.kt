@@ -27,13 +27,16 @@ import sanaebadi.info.movieapp.viewModel.PopularViewModel
 /**
  * A simple [Fragment] subclass.
  */
-class PopularFragment : Fragment() , PopularMoviePagedListAdapter.onItemClickListener{
+class PopularFragment : Fragment(), PopularMoviePagedListAdapter.onItemClickListener,
+    PopularMoviePagedListAdapter.getMovieId {
 
     private var navController: NavController? = null
     private lateinit var viewModel: PopularViewModel
     private lateinit var moviePopularRepository: MoviePopularRepository
 
     private lateinit var rvListItem: RecyclerView
+
+    private var movieId: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +56,7 @@ class PopularFragment : Fragment() , PopularMoviePagedListAdapter.onItemClickLis
         rvListItem = view.findViewById(R.id.rv_movie_list)
 
 
-        val movieAdapter = PopularMoviePagedListAdapter(activity!!,this)
+        val movieAdapter = PopularMoviePagedListAdapter(activity!!, this, this)
         val gridLayoutManager = GridLayoutManager(activity, 2)
 
         gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
@@ -99,8 +102,22 @@ class PopularFragment : Fragment() , PopularMoviePagedListAdapter.onItemClickLis
         })[PopularViewModel::class.java]
     }
 
+    override fun getId(id: Int) {
+        movieId = id
+        println("I AM IN POPULAR AND ID IS $movieId")
+    }
+
     override fun onItemClick(view: View) {
         navController = Navigation.findNavController(view)
-        navController!!.navigate(R.id.action_homeFragment_to_detailsFragment)
+
+        val bundle = bundleOf(
+            "id" to movieId
+        )
+
+        println("I AM BUNDLE $bundle")
+
+        navController!!.navigate(R.id.action_homeFragment_to_detailsFragment ,bundle)
     }
+
+
 }

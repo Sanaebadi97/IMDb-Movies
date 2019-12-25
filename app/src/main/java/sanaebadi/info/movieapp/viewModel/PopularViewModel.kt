@@ -24,6 +24,10 @@ class PopularViewModel(private val moviePopularRepository: MoviePopularRepositor
         return moviePageList.value?.isEmpty() ?: true
     }
 
+
+
+
+
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.dispose()

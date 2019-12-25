@@ -15,6 +15,10 @@
             app:destination="@id/detailsFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit" />
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="1" />
 
 
     </fragment>

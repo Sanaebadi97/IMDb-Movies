@@ -7,7 +7,7 @@ import sanaebadi.info.movieapp.model.MovieDetails
 import sanaebadi.info.movieapp.repository.MovieDetailsRepository
 import sanaebadi.info.movieapp.utilitis.NetworkState
 
-class DetailsViewModel(private val movieDetailsRepository: MovieDetailsRepository, movieId: Long) :
+class DetailsViewModel(private val movieDetailsRepository: MovieDetailsRepository, movieId: Int) :
     ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
@@ -20,7 +20,6 @@ class DetailsViewModel(private val movieDetailsRepository: MovieDetailsRepositor
     val networkState: LiveData<NetworkState> by lazy {
         movieDetailsRepository.getMovieDetailsNetworkState()
     }
-
 
     override fun onCleared() {
         super.onCleared()

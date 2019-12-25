@@ -12,7 +12,7 @@ class MovieDetailsRepository(private val apiService: MovieApiInterface) {
 
     fun fetchMovieDetails(
         compositeDisposable: CompositeDisposable,
-        movieId: Long
+        movieId: Int
     ): LiveData<MovieDetails> {
 
         movieDetailsNetworkDataSource =

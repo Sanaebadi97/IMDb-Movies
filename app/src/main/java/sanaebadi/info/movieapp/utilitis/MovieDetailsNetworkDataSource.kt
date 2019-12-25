@@ -25,7 +25,7 @@ class MovieDetailsNetworkDataSource(
     val downloadMovieDetailsResponse: LiveData<MovieDetails>
         get() = _downloadMovieDetailsResponse
 
-    fun fetchMovieDetails(movieId: Long) {
+    fun fetchMovieDetails(movieId: Int) {
         _networkState.postValue(NetworkState.LOADING)
 
         try {

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -34,14 +35,11 @@ class DetailsFragment : Fragment() {
     private lateinit var repository: MovieDetailsRepository
 
 
+    private var movieId: Int? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val movieId: Long = 181812
-        val apiService: MovieApiInterface = MovieClient.getClient()
-        repository = MovieDetailsRepository(apiService)
-
-        viewModel = getViewModel(movieId)
+        movieId = arguments!!.getInt("id")
     }
 
     override fun onCreateView(
@@ -50,22 +48,31 @@ class DetailsFragment : Fragment() {
     ): View? {
 
 
-
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_details, container, false)
-        activity!!.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        activity!!.window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
+
+        val apiService: MovieApiInterface = MovieClient.getClient()
+        repository = MovieDetailsRepository(apiService)
 
 
+        viewModel = getViewModel(movieId!!)
 
         viewModel.movieDetails.observe(viewLifecycleOwner, Observer {
 
             bindUi(it)
+
         })
 
         viewModel.networkState.observe(viewLifecycleOwner, Observer {
             progress_bar.visibility = if (it == NetworkState.LOADED) View.GONE else View.VISIBLE
             txt_error.visibility = if (it == NetworkState.ERROR) View.VISIBLE else View.GONE
         })
+
+
 
         return view
     }
@@ -89,7 +96,7 @@ class DetailsFragment : Fragment() {
             .into(iv_movie_poster)
     }
 
-    private fun getViewModel(movieId: Long): DetailsViewModel {
+    private fun getViewModel(movieId: Int): DetailsViewModel {
         return ViewModelProvider(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")

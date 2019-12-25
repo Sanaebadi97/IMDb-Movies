@@ -2,7 +2,6 @@ package sanaebadi.info.movieapp.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.OrientationEventListener
 import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
@@ -17,7 +16,11 @@ import sanaebadi.info.movieapp.model.Movie
 import sanaebadi.info.movieapp.utilitis.NetworkState
 
 
-class PopularMoviePagedListAdapter(private val context: Context, val listener: onItemClickListener) :
+class PopularMoviePagedListAdapter(
+    private val context: Context,
+    val listener: onItemClickListener,
+    val getId:getMovieId
+) :
     PagedListAdapter<Movie, RecyclerView.ViewHolder>(MovieDiffCallback()) {
 
     val MOVIE_VIEW_TYPE = 1
@@ -46,8 +49,12 @@ class PopularMoviePagedListAdapter(private val context: Context, val listener: o
             (holder as NetworkStateItemViewHolder).bind(networkState)
         }
 
-        holder.itemView.setOnClickListener{
+        val movie = getItem(position)
+        holder.itemView.setOnClickListener {
             listener.onItemClick(it)
+            println("ID IS ${movie!!.id}")
+            getId.getId(movie.id)
+
         }
     }
 
@@ -92,11 +99,6 @@ class PopularMoviePagedListAdapter(private val context: Context, val listener: o
                 .load(moviePosterURL)
                 .into(itemView.cv_iv_movie_poster)
 
-            itemView.setOnClickListener {
-                //                val intent = Intent(context, SingleMovie::class.java)
-//                intent.putExtra("id", movie?.id)
-//                context.startActivity(intent)
-            }
 
         }
 
@@ -145,5 +147,9 @@ class PopularMoviePagedListAdapter(private val context: Context, val listener: o
 
     interface onItemClickListener {
         fun onItemClick(view: View)
+    }
+
+    interface getMovieId {
+        fun getId(id: Int)
     }
 }
